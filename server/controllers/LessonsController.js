@@ -62,6 +62,25 @@ class LessonsController {
             console.log(e)
         }
     }
+
+    async deleteLesson(req, res) {
+        try {
+            const {filter} = req.body
+            const doc = await Lesson.findOne(filter)
+            await doc.deleteOne()
+
+            res.status(200).json({
+                isError: false,
+                message: "Занятие удалено"
+            })
+        } catch (e) {
+            res.status(404).json({
+                isError: true,
+                message: "Ошибка удаления занятия"
+            })
+            console.log(e)
+        }
+    }
 }
 
 module.exports = new LessonsController()

@@ -6,12 +6,14 @@ class AuthController {
             // TODO: LDAP auth
 
             res.status(200).json({
-                message: "login success"
+                isError: false,
+                message: "Успешно авторизован"
             })
 
         } catch (e) {
             res.status(404).json({
-                message: "[POST] Login error"
+                isError: true,
+                message: "Ошибка авторизации"
             })
             console.log(e)
         }

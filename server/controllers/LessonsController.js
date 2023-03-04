@@ -43,6 +43,25 @@ class LessonsController {
             console.log(e)
         }
     }
+
+    async editLesson(req, res) {
+        try {
+            const {filter, update} = req.body
+
+            await Lesson.findOneAndUpdate(filter, update)
+
+            res.status(200).json({
+                isError: false,
+                message: "Занятие отредактировано"
+            })
+        } catch (e) {
+            res.status(404).json({
+                isError: true,
+                message: "Ошибка редактирования занятия"
+            })
+            console.log(e)
+        }
+    }
 }
 
 module.exports = new LessonsController()

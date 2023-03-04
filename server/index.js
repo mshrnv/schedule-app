@@ -3,6 +3,10 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
+// Routers import
+const authRouter = require("./routers/AuthRouter")
+const lessonsRouter = require("./routers/LessonsRouter")
+
 // Server port
 const EXPRESS_PORT = process.env.EXPRESS_PORT || 5000
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/27unc'
@@ -16,6 +20,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 // CORS
 app.use(cors())
+
+// Routes
+app.use("", authRouter)
+app.use("/lessons", lessonsRouter)
 
 
 const start = () => {

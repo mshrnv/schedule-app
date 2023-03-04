@@ -1,7 +1,13 @@
 const Lesson = require('../models/Lesson')
 
 class LessonsController {
-    async getLessons(req, res) {
+    /**
+     * GET query to get all lessons at <req.body.date>
+     * @param req
+     * @param res
+     * @returns {Promise<void>}
+     */
+    async getLessonsByDate(req, res) {
         try {
 
             const {date} = req.body
@@ -12,21 +18,27 @@ class LessonsController {
 
             res.status(200).json({
                 isError: false,
-                message: '[GET] Lessons success',
+                message: 'Список занятий',
                 data: result
             })
         } catch (e) {
             res.status(404).json({
                 isError: true,
-                message: "[GET] Lessons error"
+                message: "Ошибка получения списка занятий"
             })
             console.log(e)
         }
     }
 
+    /**
+     * POST query to create lesson in database
+     * @param req
+     * @param res
+     * @returns {Promise<void>}
+     */
     async newLesson(req, res) {
         try {
-            const data = req.body
+            const {data} = req.body
 
             const doc = new Lesson(data);
             await doc.save();
@@ -44,6 +56,12 @@ class LessonsController {
         }
     }
 
+    /**
+     * PUT query to update lesson info in database
+     * @param req
+     * @param res
+     * @returns {Promise<void>}
+     */
     async editLesson(req, res) {
         try {
             const {filter, update} = req.body
@@ -63,6 +81,12 @@ class LessonsController {
         }
     }
 
+    /**
+     * DELETE query to remove lesson from database
+     * @param req
+     * @param res
+     * @returns {Promise<void>}
+     */
     async deleteLesson(req, res) {
         try {
             const {filter} = req.body

@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+require('dotenv').config(); // For .env files
 
 // Routers import
 const authRouter = require("./routers/AuthRouter")
@@ -42,3 +43,5 @@ const start = () => {
 }
 
 start()
+
+module.exports = app

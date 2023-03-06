@@ -8,6 +8,7 @@ const authRouter = require("./routers/AuthRouter")
 const lessonsRouter = require("./routers/LessonsRouter")
 const selftrainingsRouter = require("./routers/SelftrainingsRouter")
 const teachersRouter = require('./routers/TeachersRouter')
+const classroomsRouter = require('./routers/ClassroomsRouter')
 
 // Server port
 const EXPRESS_PORT = process.env.EXPRESS_PORT || 5000
@@ -28,6 +29,7 @@ app.use("/auth", authRouter)
 app.use("/lessons", lessonsRouter)
 app.use("/selftrainings", selftrainingsRouter)
 app.use("/teachers", teachersRouter)
+app.use("/classrooms", classroomsRouter)
 
 
 const start = () => {

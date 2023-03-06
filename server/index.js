@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 // Routers import
 const authRouter = require("./routers/AuthRouter")
 const lessonsRouter = require("./routers/LessonsRouter")
+const selftrainingsRouter = require("./routers/SelftrainingsRouter")
 
 // Server port
 const EXPRESS_PORT = process.env.EXPRESS_PORT || 5000
@@ -22,8 +23,9 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(cors())
 
 // Routes
-app.use("", authRouter)
+app.use("/auth", authRouter)
 app.use("/lessons", lessonsRouter)
+app.use("/selftrainings", selftrainingsRouter)
 
 
 const start = () => {

@@ -1,4 +1,4 @@
-# Shedule App
+# Schedule App
 
 ### Stack:
 - MongoDB

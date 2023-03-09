@@ -10,10 +10,11 @@ class LessonsController {
     async getLessonsByDate(req, res) {
         try {
 
-            const {date} = req.body
+            const {date, classrooms} = req.body
 
             const result = await Lesson.find({
-                date: date
+                classrooms,
+                date
             })
 
             res.status(200).json({

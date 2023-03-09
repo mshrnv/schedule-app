@@ -2,10 +2,11 @@ import axios from "axios"
 
 export default class LessonService {
     static apiUrl = "http://localhost:5000/lessons"
-    static async getLessonsByDate(date, classrooms) {
+    static async getLessonsByDate(date) {
         const response = await axios.get(this.apiUrl, {
-            date,
-            classrooms
+            params: {
+                date
+            }
         })
         return response;
     }

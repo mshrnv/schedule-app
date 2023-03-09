@@ -8,6 +8,7 @@ import ClassroomService from "../api/ClassroomService";
 import Header from "../components/Header/Header";
 import Utils from "../utils/Utils";
 import TeacherService from "../api/TeacherService";
+import Schedule from "../components/Schedule/Schedule";
 
 const SchedulePage = () => {
 
@@ -74,18 +75,16 @@ const SchedulePage = () => {
                 />
 
             </div>
-
-
-            {/*{dateRange.range.map(date => (*/}
-            {/*    <Schedule*/}
-            {/*        key={date}*/}
-            {/*        teachers={teachers}*/}
-            {/*        classrooms={classrooms}*/}
-            {/*        date={date}*/}
-            {/*    />*/}
-            {/*))}*/}
-
-
+            <div className="flex flex-col justify-center items-center">
+                {dateRange.range.map(date => (
+                    <Schedule
+                        key={date}
+                        teachers={teachers}
+                        classrooms={classrooms}
+                        date={date}
+                    />
+                ))}
+            </div>
             <ToastContainer/>
         </div>
     );

@@ -25,6 +25,7 @@ const Header = () => {
                             className="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0 md:flex-row md:items-center">
                             {links.map(link => (
                                 <a
+                                    key={link.name}
                                     className={
                                         link.isActive ? (
                                             "inline-block w-full py-2 mx-0 font-medium text-left text-indigo-600 md:w-auto md:px-0 md:mx-2 hover:text-indigo-600 lg:mx-3 md:text-center"

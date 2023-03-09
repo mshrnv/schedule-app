@@ -1,12 +1,13 @@
 import React from "react";
-import Header from "./components/Header";
+import SchedulePage from "./pages/SchedulePage";
 
 function App() {
 
 
     return (
         <div className="App">
-            <Header />
+            {/*<LoginPage />*/}
+            <SchedulePage />
         </div>
     );
 }

@@ -62,23 +62,28 @@ const EmptyLessonButton = ({lesson_number, classroom, date, teachers, updateLess
                 <Modal.Header>
                     <h3>Пара №{pairInfo.lesson_number}</h3>
                 </Modal.Header>
+                <hr/>
                 <Modal.Body>
-                    <h5 className="mt-2">Дата: {pairInfo.date.slice(0, 10)}</h5>
+                    <h5>Дата: {pairInfo.date.slice(0, 10)}</h5>
                     <h5 className="mt-2">Аудитория: {pairInfo.classroom} УНЦ</h5>
-                    <h5 className="mt-2">Группа:
+                    <div className="flex mt-2 items-center">
+                        <h5>Группа:</h5>
                         <input defaultValue={pairInfo.group}
                                type="text"
                                onChange={groupHandle}
-                               className="p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 inline w-1/2"/>
-                    </h5>
-                    <h5 className="mt-2 inline-block">Преподаватель:</h5>
-                    <TeacherPicker teachers={teachers} teacherHandle={teacherHandle}/>
-                    <h5 className="mt-2">Дисциплина:
+                               className="p-2 text-sm ml-2 text-blue-600 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-1/2"/>
+                    </div>
+                    <div className="flex mt-2 items-center">
+                        <h5>Преподаватель:</h5>
+                        <TeacherPicker teachers={teachers} teacherHandle={teacherHandle}/>
+                    </div>
+                    <div className="flex mt-2 items-center">
+                        <h5>Дисциплина:</h5>
                         <input defaultValue={pairInfo.subject}
                                type="text"
                                onChange={subjectHandle}
-                               className="p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 inline w-1/2"/>
-                    </h5>
+                               className="p-2 text-sm ml-2 text-blue-600 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 inline w-1/2"/>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <button type="button"

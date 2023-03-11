@@ -47,7 +47,7 @@ const ClassroomCheckbox = ({allClassrooms, classrooms, setClassrooms}) => {
                             checked={classrooms.length === allValue.length}
                             onChange={handleCheckAll}
                         >
-                            Check all
+                            Выбрать все
                         </Checkbox>
 
                         <Button

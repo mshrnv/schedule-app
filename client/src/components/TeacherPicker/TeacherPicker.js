@@ -9,7 +9,7 @@ const TeacherPicker = ({teacher, teachers, teacherHandle}) => {
 
     return (
         <div className="inline-block">
-            <SelectPicker defaultValue={teacher} onChange={teacherHandle} data={data} placeholder="-" style={{ width: 224, marginLeft: 8 }} />
+            <SelectPicker defaultValue={teacher} onChange={teacherHandle} data={data} placeholder="-" style={{ width: 224, marginLeft: 8, color: "black"}} />
         </div>
     );
 };

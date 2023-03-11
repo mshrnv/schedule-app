@@ -62,6 +62,7 @@ const SchedulePage = () => {
                 <DateRangePicker
                     placeholder={'Выберите диапозон дат'}
                     onChange={handleDateRange}
+                    ranges={[]}
                     showOneCalendar
                     size={"lg"}
                     className="w-1/3 mt-8 mb-8 mr-8 text-black inline-block"

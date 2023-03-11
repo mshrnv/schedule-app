@@ -52,7 +52,7 @@ const Schedule = ({date, teachers, classrooms}) => {
                                     {date}
                                 </th>
                                 {classrooms.map(classroom => (
-                                    <th key={classroom} scope="col" className="text-xl font-medium px-6 py-4 border-r border-indigo-500">
+                                    <th key={classroom} scope="col" className="text-xl font-bold px-6 py-4 border-r border-indigo-500">
                                         {classroom} УНЦ
                                     </th>
                                 ))}
@@ -62,7 +62,7 @@ const Schedule = ({date, teachers, classrooms}) => {
 
                             {[1,2,3,4].map((lessonNumber => (
                                 <tr key={String(date)+String(lessonNumber)} className="border-b border-indigo-500">
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r border-indigo-500">{lessonNumber}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-xl font-bold text-gray-900 border-r border-indigo-500">{lessonNumber}</td>
 
                                     {classrooms.map(classroom => (
                                         <td key={String(lessonNumber)+String(classroom)} className="text-sm text-gray-900 font-light px-2 py-2 whitespace-nowrap border-r border-indigo-500">

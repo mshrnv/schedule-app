@@ -38,7 +38,7 @@ const SelftrainingPage = () => {
         })
     }
 
-    useEffect(() => {
+    useEffect (() => {
         updateSelftrainings()
     }, [])
 
@@ -53,6 +53,7 @@ const SelftrainingPage = () => {
             <hr className="mx-auto w-2/3"/>
             <SelftrainingTable
                 selftrainings={selftrainings}
+                updateSelftrainings={updateSelftrainings}
             />
             <ToastContainer/>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
+import DeleteSelftrainingButton from "../DeleteSelftrainingButton/DeleteSelftrainingButton";
 
-const SelftrainingTable = ({selftrainings}) => {
+const SelftrainingTable = ({selftrainings, updateSelftrainings}) => {
     return (
         <div>
             <div className="w-2/3 mx-auto shadow-md sm:rounded-lg">
@@ -54,10 +55,10 @@ const SelftrainingTable = ({selftrainings}) => {
                                 )}
                             </td>
                             <td className="px-6 py-4 text-center">
-                                <button type="button"
-                                        className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm  text-center p-2">
-                                    Отменить запись
-                                </button>
+                                <DeleteSelftrainingButton
+                                    selftraining={item}
+                                    updateSelftrainings={updateSelftrainings}
+                                />
                             </td>
                         </tr>
                     ))}

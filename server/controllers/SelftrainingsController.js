@@ -97,7 +97,7 @@ class SelftrainingsController {
         try {
             const {filter} = req.body
 
-            const doc = Selftraining.findOne(filter)
+            const doc = await Selftraining.findOne(filter)
             doc.deleteOne()
 
             res.status(200).json({

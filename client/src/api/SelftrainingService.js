@@ -29,7 +29,9 @@ export default class SelftrainingService {
 
     static async deleteSelftraining(filter) {
         const response = await axios.delete(this.apiUrl, {
-            filter
+            data: {
+                filter
+            }
         })
         return response;
     }

@@ -3,7 +3,7 @@ import axios from "axios"
 export default class SelftrainingService {
     static apiUrl = "http://localhost:5000/selftrainings"
     static async getUserSelftrainings(username) {
-        const response = await axios.get(this.apiUrl, {
+        const response = await axios.get(this.apiUrl + "/user", {
             params: {
                 username
             }

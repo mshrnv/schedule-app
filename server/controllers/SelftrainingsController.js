@@ -39,12 +39,19 @@ class SelftrainingsController {
         try {
             const {username} = req.query
 
-            const result = await Selftraining.find({
+            const _result = await Selftraining.find({
                 username: username,
                 date: {
                     $gte: new Date().toISOString().slice(0, 10)
                 }
             })
+
+            let result = [];
+
+            for (const item of _result) {
+                const count = (await Selftraining.find({date: item.date})).length
+                result.push({...item._doc, todayCount: count})
+            }
 
             res.status(200).json({
                 isError: false,

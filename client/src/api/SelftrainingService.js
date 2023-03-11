@@ -11,6 +11,15 @@ export default class SelftrainingService {
         return response;
     }
 
+    static async getSelftrainingsByDate(date) {
+        const response = await axios.get(this.apiUrl, {
+            params: {
+                date
+            }
+        })
+        return response;
+    }
+
     static async newSelftraining(data) {
         const response = await axios.post(this.apiUrl, {
             data

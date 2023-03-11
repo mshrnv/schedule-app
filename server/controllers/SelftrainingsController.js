@@ -37,7 +37,7 @@ class SelftrainingsController {
      */
     async getUserSelftrainings(req, res) {
         try {
-            const {username} = req.body
+            const {username} = req.query
 
             const result = await Selftraining.find({
                 username: username,
@@ -81,6 +81,26 @@ class SelftrainingsController {
             res.status(404).json({
                 isError: true,
                 message: "Ошибка записи на самоподготовку"
+            })
+            console.log(e)
+        }
+    }
+
+    async deleteSelftraining(req, res) {
+        try {
+            const {filter} = req.body
+
+            const doc = Selftraining.findOne(filter)
+            doc.deleteOne()
+
+            res.status(200).json({
+                isError: false,
+                message: "Запись отменена"
+            })
+        } catch (e) {
+            res.status(404).json({
+                isError: true,
+                message: "Ошибка отмены записи на самоподготовку"
             })
             console.log(e)
         }

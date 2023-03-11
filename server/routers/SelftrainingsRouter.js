@@ -7,5 +7,6 @@ const selftrainingsRouter = new Router()
 selftrainingsRouter.get("", controller.getSelftrainings)
 selftrainingsRouter.get("/user", controller.getUserSelftrainings)
 selftrainingsRouter.post("", controller.newSelftrainings)
+selftrainingsRouter.delete("", controller.deleteSelftraining)
 
 module.exports = selftrainingsRouter

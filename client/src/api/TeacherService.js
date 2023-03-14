@@ -16,6 +16,13 @@ export default class TeacherService {
         return response;
     }
 
+    static async addTeacher(data) {
+        const response = await axios.post(this.apiUrl, {
+            data
+        })
+        return response;
+    }
+
 }
 
 

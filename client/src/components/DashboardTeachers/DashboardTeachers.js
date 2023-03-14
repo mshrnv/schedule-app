@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import TeacherService from "../../api/TeacherService";
 import DashboardTeachersTable from "../DashboardTeachersTable/DashboardTeachersTable";
+import AddTeacher from "../AddTeacher/AddTeacher";
 
 const DashboardTeachers = () => {
 
@@ -16,10 +17,15 @@ const DashboardTeachers = () => {
     }, [])
 
     return (
-        <div>
+        <div className="w-3/4 text-center">
             <h1 className="text-4xl bold leading-none tracking-tight text-gray-900 mb-4">
                 Преподаватели
             </h1>
+            <hr/>
+            <AddTeacher
+                updateTeachers={updateTeachers}
+            />
+            <hr/>
             <DashboardTeachersTable
                 teachers={teachers}
                 updateTeachers={updateTeachers}

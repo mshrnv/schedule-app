@@ -1,20 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Header from "../components/Header/Header";
-import {Calendar} from "rsuite";
+import DashboardSelftraining from "../components/DashboardSelftraining/DashboardSelftraining";
 
 const DashboardPage = () => {
-    // TODO: Current date
-    const [selftrainingDate, setSelftrainingDate] = useState();
-
     return (
         <div>
             <Header />
             <div className="flex mb-4 w-4/5 mx-auto">
-                <div className="flex flex-row w-full">
-                    <div className="basis-1/3">
-                        <Calendar compact bordered />
-                    </div>
-                </div>
+                <DashboardSelftraining/>
             </div>
             <hr className="w-4/5 mx-auto"/>
             <div className="flex mb-4 w-4/5 mx-auto">

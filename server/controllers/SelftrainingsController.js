@@ -9,7 +9,7 @@ class SelftrainingsController {
      */
     async getSelftrainings(req, res) {
         try {
-            const {date} = req.body
+            const {date} = req.query
 
             const result = await Selftraining.find({
                 date: date

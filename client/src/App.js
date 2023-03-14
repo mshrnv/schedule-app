@@ -2,6 +2,7 @@ import React from "react";
 import SchedulePage from "./pages/SchedulePage";
 import SelftrainingPage from "./pages/SelftrainingPage";
 import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
 
@@ -10,7 +11,8 @@ function App() {
         <div className="App">
             {/*<LoginPage />*/}
             {/*<SchedulePage />*/}
-            <SelftrainingPage />
+            {/*<SelftrainingPage />*/}
+            <DashboardPage />
         </div>
     );
 }

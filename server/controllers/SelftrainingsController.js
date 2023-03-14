@@ -21,7 +21,7 @@ class SelftrainingsController {
                 data: result
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка получения списка самоподготовки"
             })
@@ -59,7 +59,7 @@ class SelftrainingsController {
                 data: result
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка получения списка самоподготовки"
             })
@@ -85,7 +85,7 @@ class SelftrainingsController {
                 message: "Успешно записаны"
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка записи на самоподготовку"
             })
@@ -105,7 +105,7 @@ class SelftrainingsController {
                 message: "Запись отменена"
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка отмены записи на самоподготовку"
             })

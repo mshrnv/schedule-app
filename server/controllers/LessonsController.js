@@ -22,7 +22,7 @@ class LessonsController {
                 data: result
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка получения списка занятий"
             })
@@ -48,7 +48,7 @@ class LessonsController {
                 message: "Занятие добавлено"
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка добавления занятия"
             })
@@ -73,7 +73,7 @@ class LessonsController {
                 message: "Занятие отредактировано"
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка редактирования занятия"
             })
@@ -98,7 +98,7 @@ class LessonsController {
                 message: "Занятие удалено"
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка удаления занятия"
             })

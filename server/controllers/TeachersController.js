@@ -17,7 +17,7 @@ class TeachersController {
                 data: result
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка получения списка преподавателей"
             })
@@ -43,7 +43,7 @@ class TeachersController {
                 message: "Преподаватель успешно добавлен"
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка добавления преподавателя"
             })
@@ -69,7 +69,7 @@ class TeachersController {
                 message: "Преподаватель удален"
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка удаления преподавателя"
             })

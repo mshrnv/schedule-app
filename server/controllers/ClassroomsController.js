@@ -17,7 +17,7 @@ class ClassroomsController {
                 data: result
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка получения списка аудиторий"
             })
@@ -43,7 +43,7 @@ class ClassroomsController {
                 message: "Аудитория успешно добавлена"
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка добавления аудитории"
             })
@@ -69,7 +69,7 @@ class ClassroomsController {
                 message: "Аудитория удалена"
             })
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 message: "Ошибка удаления аудитории"
             })

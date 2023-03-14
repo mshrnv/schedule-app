@@ -18,7 +18,7 @@ class AuthController {
             })
 
         } catch (e) {
-            res.status(404).json({
+            res.status(200).json({
                 isError: true,
                 success: false,
                 message: "Ошибка авторизации"

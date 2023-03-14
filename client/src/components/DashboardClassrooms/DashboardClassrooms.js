@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import ClassroomService from "../../api/ClassroomService";
 import DashboardClassroomsTable from "../DashboardClassroomsTable/DashboardClassroomsTable";
+import AddClassroom from "../AddClassroom/AddClassroom";
 
 const DashboardClassrooms = () => {
     const [classrooms, setClassrooms] = useState([])
@@ -15,10 +16,15 @@ const DashboardClassrooms = () => {
     }, [])
 
     return (
-        <div>
+        <div className="w-3/4 text-center">
             <h1 className="text-4xl bold leading-none tracking-tight text-gray-900 mb-4">
                 Аудитории
             </h1>
+            <hr/>
+            <AddClassroom
+                updateClassrooms={updateClassrooms}
+            />
+            <hr/>
             <DashboardClassroomsTable
                 classrooms={classrooms}
                 updateClassrooms={updateClassrooms}

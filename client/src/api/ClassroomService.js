@@ -16,6 +16,13 @@ export default class ClassroomService {
         return response;
     }
 
+    static async addClassroom(data) {
+        const response = await axios.post(this.apiUrl, {
+            data
+        })
+        return response;
+    }
+
 
 }
 

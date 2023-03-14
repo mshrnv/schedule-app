@@ -7,6 +7,15 @@ export default class ClassroomService {
         return response;
     }
 
+    static async deleteClassroom(filter) {
+        const response = await axios.delete(this.apiUrl, {
+            data: {
+                filter
+            }
+        })
+        return response;
+    }
+
 
 }
 

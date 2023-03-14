@@ -7,6 +7,14 @@ export default class TeacherService {
         return response;
     }
 
+    static async deleteTeacher(filter) {
+        const response = await axios.delete(this.apiUrl, {
+            data: {
+                filter
+            }
+        })
+        return response;
+    }
 
 }
 

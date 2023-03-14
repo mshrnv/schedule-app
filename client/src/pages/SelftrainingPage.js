@@ -15,27 +15,32 @@ const SelftrainingPage = () => {
 
     const [selftrainings, setSelftrainings] = useState([])
 
-    const newSelftraining = () => {
-        SelftrainingService.newSelftraining({
+    const newSelftraining = async () => {
+        const res = await SelftrainingService.newSelftraining({
             hours: datetime.hours,
             minutes: datetime.minutes,
             date: datetime.date,
             username: "20350125" // TODO: USERNAME HERE
-        }).then((res) => {
-            toast.success(res.data.message)
-        }).catch((res) => {
-            toast.error(res.response.data.message)
         })
-        updateSelftrainings()
+
+        const response = res.data
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            toast.success(response.message)
+        }
+        await updateSelftrainings()
     }
 
-    const updateSelftrainings = () => {
-        SelftrainingService.getUserSelftrainings("20350125").then((res) => {
-            const response = res.data
+    const updateSelftrainings = async () => {
+        const res = await SelftrainingService.getUserSelftrainings("20350125")
+        const response = res.data
+
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
             setSelftrainings(response.data)
-        }).catch((res) => {
-            toast.error(res.response.data.message)
-        })
+        }
     }
 
     useEffect (() => {

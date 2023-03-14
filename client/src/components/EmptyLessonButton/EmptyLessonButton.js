@@ -36,17 +36,16 @@ const EmptyLessonButton = ({lesson_number, classroom, date, teachers, updateLess
         setPairInfo(tempPairInfo)
     }
 
-    const newLesson = () => {
-        LessonService.newLesson(pairInfo).then(async (res) => {
-            const response = res.data
+    const newLesson = async () => {
+        const res = await LessonService.newLesson(pairInfo)
+        const response = res.data
 
-            if (response.isError) {
-                toast.error(response.message)
-            } else {
-                toast.success(response.message)
-                await updateLessons()
-            }
-        })
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            toast.success(response.message)
+            await updateLessons()
+        }
     }
 
     return (

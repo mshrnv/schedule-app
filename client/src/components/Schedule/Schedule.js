@@ -2,16 +2,22 @@ import React, {useEffect, useState} from 'react';
 import LessonService from "../../api/LessonService";
 import EmptyLessonButton from "../EmptyLessonButton/EmptyLessonButton";
 import LessonButton from "../LessonButton/LessonButton";
+import {toast} from "react-toastify";
 
 const Schedule = ({date, teachers, classrooms}) => {
 
     const [lessons, setLessons] = useState([])
 
-    const updateLessons = () => {
-        LessonService.getLessonsByDate(date).then(res => {
-            const response = res.data
+    const updateLessons = async () => {
+        const res = await LessonService.getLessonsByDate(date)
+        const response = res.data
+
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
             setLessons(response.data)
-        })
+        }
+
     }
 
     const getLessonButton = (pairInfo, classroom, lesson_number, date) => {

@@ -2,13 +2,21 @@ import React, {useState} from 'react';
 import {Input, InputGroup} from "rsuite";
 import MemberIcon from '@rsuite/icons/Member';
 import ClassroomService from "../../api/ClassroomService";
+import {toast} from "react-toastify";
 
 const AddClassroom = ({updateClassrooms}) => {
 
     const [classroomNum, setClassroomNum] = useState("");
     const addClassroom = async () => {
-        const response = await ClassroomService.addClassroom({num: classroomNum})
-        console.log(response)
+        const res = await ClassroomService.addClassroom({num: classroomNum})
+        const response = res.data
+
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            toast.success(response.message)
+        }
+
         await updateClassrooms()
         setClassroomNum("")
     }

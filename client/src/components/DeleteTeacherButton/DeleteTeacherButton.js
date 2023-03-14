@@ -8,14 +8,17 @@ const DeleteTeacherButton = ({teacher, updateTeachers}) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const deleteTeacher = () => {
-        TeacherService.deleteTeacher({_id: teacher._id}).then((res) => {
-            toast.success(res.data.message)
-        }).catch((res) => {
-            toast.error(res.response.data.message)
-        })
+    const deleteTeacher = async () => {
+        const res = await TeacherService.deleteTeacher({_id: teacher._id})
+        const response = res.data
 
-        updateTeachers()
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            toast.success(response.message)
+        }
+
+        await updateTeachers()
         handleClose()
     }
 

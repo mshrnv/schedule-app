@@ -8,14 +8,17 @@ const DeleteClassroomButton = ({classroom, updateClassrooms}) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const deleteClassroom = () => {
-        ClassroomService.deleteClassroom({_id: classroom._id}).then((res) => {
-            toast.success(res.data.message)
-        }).catch((res) => {
-            toast.error(res.response.data.message)
-        })
+    const deleteClassroom = async () => {
+        const res = await ClassroomService.deleteClassroom({_id: classroom._id})
+        const response = res.data
 
-        updateClassrooms()
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            toast.success(response.message)
+        }
+
+        await updateClassrooms()
         handleClose()
     }
 

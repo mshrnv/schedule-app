@@ -2,13 +2,20 @@ import React, {useEffect, useState} from 'react';
 import ClassroomService from "../../api/ClassroomService";
 import DashboardClassroomsTable from "../DashboardClassroomsTable/DashboardClassroomsTable";
 import AddClassroom from "../AddClassroom/AddClassroom";
+import {toast} from "react-toastify";
 
 const DashboardClassrooms = () => {
     const [classrooms, setClassrooms] = useState([])
 
     const updateClassrooms = async () => {
-        const response = await ClassroomService.getAllClassrooms()
-        setClassrooms(response.data.data)
+        const res = await ClassroomService.getAllClassrooms()
+        const response = res.data
+
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            setClassrooms(response.data)
+        }
     }
 
     useEffect(() => {

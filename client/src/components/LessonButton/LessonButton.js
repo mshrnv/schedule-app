@@ -29,30 +29,28 @@ const LessonButton = ({pairInfo, teachers, updateLessons}) => {
         setNewPairInfo(tempPairInfo)
     }
 
-    const editLesson = () => {
-        LessonService.editLesson(pairInfo, newPairInfo).then(res => {
-            const response = res.data
+    const editLesson = async () => {
+        const res = await LessonService.editLesson(pairInfo, newPairInfo)
+        const response = res.data
 
-            if (response.isError) {
-                toast.error(response.message)
-            } else {
-                toast.success(response.message)
-                updateLessons()
-            }
-        })
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            toast.success(response.message)
+            await updateLessons()
+        }
     }
 
-    const deleteLesson = () => {
-        LessonService.deleteLesson(pairInfo).then(res => {
-            const response = res.data
+    const deleteLesson = async () => {
+        const res = await LessonService.deleteLesson(pairInfo)
+        const response = res.data
 
-            if (response.isError) {
-                toast.error(response.message)
-            } else {
-                toast.success(response.message)
-                updateLessons()
-            }
-        })
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            toast.success(response.message)
+            await updateLessons()
+        }
     }
 
     return (

@@ -2,13 +2,21 @@ import React, {useState} from 'react';
 import {Input, InputGroup} from "rsuite";
 import AvatarIcon from '@rsuite/icons/legacy/Avatar';
 import TeacherService from "../../api/TeacherService";
+import {toast} from "react-toastify";
 
 const AddTeacher = ({updateTeachers}) => {
 
     const [teacherFio, setTeacherFio] = useState("");
     const addTeacher = async () => {
-        const response = await TeacherService.addTeacher({fio: teacherFio})
-        console.log(response)
+        const res = await TeacherService.addTeacher({fio: teacherFio})
+        const response = res.data
+
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            toast.success(response.message)
+        }
+
         await updateTeachers()
         setTeacherFio("")
     }

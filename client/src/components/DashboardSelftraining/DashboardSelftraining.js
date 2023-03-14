@@ -2,17 +2,22 @@ import React, {useEffect, useState} from 'react';
 import {Calendar} from "rsuite";
 import SelftrainingService from "../../api/SelftrainingService";
 import DashboardSelftrainingTable from "../DashboardSelftrainingTable/DashboardSelftrainingTable";
+import {toast} from "react-toastify";
 
 const DashboardSelftraining = () => {
     const currentDate = new Date().toISOString().slice(0, 10)
     const [selftrainingDate, setSelftrainingDate] = useState(currentDate);
     const [selftrainings, setSelftrainings] = useState([])
 
-    const updateSelftrainings = () => {
-        SelftrainingService.getSelftrainingsByDate(selftrainingDate).then((res) => {
-            const response = res.data
+    const updateSelftrainings = async () => {
+        const res = await SelftrainingService.getSelftrainingsByDate(selftrainingDate)
+        const response = res.data
+
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
             setSelftrainings(response.data)
-        })
+        }
     }
 
     useEffect(() => {

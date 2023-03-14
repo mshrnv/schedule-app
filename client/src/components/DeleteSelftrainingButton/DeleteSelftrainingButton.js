@@ -8,14 +8,17 @@ const DeleteSelftrainingButton = ({selftraining, updateSelftrainings}) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const deleteSelftraining = () => {
-        SelftrainingService.deleteSelftraining({_id: selftraining._id}).then((res) => {
-            toast.success(res.data.message)
-        }).catch((res) => {
-            toast.error(res.response.data.message)
-        })
+    const deleteSelftraining = async () => {
+        const res = await SelftrainingService.deleteSelftraining({_id: selftraining._id})
+        const response = res.data
 
-        updateSelftrainings()
+        if (response.isError) {
+            toast.error(response.message)
+        } else {
+            toast.success(response.message)
+        }
+
+        await updateSelftrainings()
         handleClose()
     }
 

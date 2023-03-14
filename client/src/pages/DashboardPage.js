@@ -6,7 +6,7 @@ const DashboardPage = () => {
     return (
         <div>
             <Header />
-            <div className="flex mb-4 w-4/5 mx-auto">
+            <div className="fle flex-row mb-4 w-4/5 mx-auto">
                 <DashboardSelftraining/>
             </div>
             <hr className="w-4/5 mx-auto"/>

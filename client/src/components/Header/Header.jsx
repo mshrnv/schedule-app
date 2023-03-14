@@ -21,16 +21,15 @@ const Header = () => {
                     className="top-0 left-0 items-start w-full h-full p-4 text-sm bg-gray-900 bg-opacity-50 md:items-center md:w-3/4 md:absolute lg:text-base md:bg-transparent md:p-0 md:relative md:flex hidden">
                     <div
                         className="flex-col w-full h-auto overflow-hidden bg-white rounded-lg md:bg-transparent md:overflow-visible md:rounded-none md:relative md:flex md:flex-row">
-                        <div
-                            className="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0 md:flex-row md:items-center">
+                        <div className="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0 md:flex-row md:items-center">
                             {links.map(link => (
                                 <a
                                     key={link.name}
                                     className={
                                         link.isActive ? (
-                                            "inline-block w-full py-2 mx-0 font-medium text-left text-indigo-600 md:w-auto md:px-0 md:mx-2 hover:text-indigo-600 lg:mx-3 md:text-center"
+                                            "inline-block w-full py-2 mx-0 font-bold text-left text-indigo-600 md:w-auto md:px-0 md:mx-2 hover:text-indigo-600 lg:mx-3 md:text-center"
                                         ) : (
-                                            "inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-gray-700 md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center"
+                                            "inline-block w-full py-2 mx-0 ml-6 font-bold text-left text-gray-900 md:ml-0 md:w-auto md:px-0 md:mx-2 hover:text-indigo-900 lg:mx-3 md:text-center"
                                         )
                                     }
                                 >

@@ -15,7 +15,7 @@ const LoginPage = () => {
         setAuthData({
             isAuth: true,
             username: authInput.username,
-            roles: []
+            roles: ['admin']
         })
     }
 

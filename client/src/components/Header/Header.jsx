@@ -5,15 +5,19 @@ import {AuthContext} from "../../context";
 
 const Header = () => {
 
-    const links = [
-        {url: '/schedule', name: 'Расписание', isActive: false},
-        {url: '/selftraining', name: 'Запись на самоподготовку', isActive: false},
-    ]
-
     const {authData, setAuthData} = useContext(AuthContext)
 
     const logout = () => {
         setAuthData({...authData, isAuth: false})
+    }
+
+    let links = [
+        {url: '/schedule', name: 'Расписание', isActive: false},
+        {url: '/selftraining', name: 'Запись на самоподготовку', isActive: false},
+    ]
+
+    if (authData.roles.includes('admin')) {
+        links.push({url: '/dashboard', name: 'Панель управления', isActive: false})
     }
 
     return (

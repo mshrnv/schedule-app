@@ -9,7 +9,7 @@ export const privateRoutes = [
     {path: '/schedule', component: <SchedulePage/>, exact: true},
     {path: '/selftraining', component: <SelftrainingPage/>, exact: true},
     {path: '/dashboard', component: <DashboardPage/>, exact: true},
-    {path: "*", component: <Navigate to="/dashboard" replace />},
+    {path: "*", component: <Navigate to="/schedule" replace />},
 ]
 
 export const publicRoutes = [

@@ -1,19 +1,25 @@
-import React from "react";
-import SchedulePage from "./pages/SchedulePage";
-import SelftrainingPage from "./pages/SelftrainingPage";
-import LoginPage from "./pages/LoginPage";
-import DashboardPage from "./pages/DashboardPage";
+import React, {useState} from "react";
+import {BrowserRouter as Router} from 'react-router-dom';
+import AppRouter from "./components/AppRouter/AppRouter";
+import {AuthContext} from "./context";
 
 function App() {
 
+    const [authData, setAuthData] = useState({
+        isAuth: false,
+        username: "",
+        roles: []
+    })
 
     return (
-        <div className="App">
-            {/*<LoginPage />*/}
-            {/*<SchedulePage />*/}
-            {/*<SelftrainingPage />*/}
-            <DashboardPage />
-        </div>
+        <AuthContext.Provider value={{
+            authData,
+            setAuthData
+        }}>
+            <Router>
+                <AppRouter />
+            </Router>
+        </AuthContext.Provider>
     );
 }
 

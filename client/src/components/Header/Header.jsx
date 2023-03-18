@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
+import {Link} from "react-router-dom";
+import {AuthContext} from "../../context";
 
 
 const Header = () => {
@@ -7,6 +9,12 @@ const Header = () => {
         {url: '/schedule', name: 'Расписание', isActive: false},
         {url: '/selftraining', name: 'Запись на самоподготовку', isActive: false},
     ]
+
+    const {authData, setAuthData} = useContext(AuthContext)
+
+    const logout = () => {
+        setAuthData({...authData, isAuth: false})
+    }
 
     return (
         <nav className="relative z-50 h-24 select-none">
@@ -23,8 +31,11 @@ const Header = () => {
                         className="flex-col w-full h-auto overflow-hidden bg-white rounded-lg md:bg-transparent md:overflow-visible md:rounded-none md:relative md:flex md:flex-row">
                         <div className="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0 md:flex-row md:items-center">
                             {links.map(link => (
-                                <a
+                                <Link
+                                    to={link.url}
                                     key={link.name}
+                                >
+                                <a
                                     className={
                                         link.isActive ? (
                                             "inline-block w-full py-2 mx-0 font-bold text-left text-indigo-600 md:w-auto md:px-0 md:mx-2 hover:text-indigo-600 lg:mx-3 md:text-center"
@@ -35,13 +46,15 @@ const Header = () => {
                                 >
                                     {link.name}
                                 </a>
+                                </Link>
                             ))}
                         </div>
                         <div
                             className="flex flex-col items-start justify-end w-full pt-4 md:items-center md:w-1/3 md:flex-row md:py-0">
                             <button
+                                onClick={logout}
                                 className="inline-flex disabled items-center text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 text-sm font-bold rounded-lg text-sm px-5 py-2.5 text-center mt-4 mr-2 mb-2">
-                                @20350125
+                                @ {authData.username}
                             </button>
                         </div>
                     </div>

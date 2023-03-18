@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Header from "../components/Header/Header";
 import SelftrainingService from "../api/SelftrainingService";
 import {toast, ToastContainer} from "react-toastify";
 import SelftrainingTable from "../components/SelftrainingTable/SelftrainingTable";
 import SelftrainingFilter from "../components/SelftrainingFilter/SelftrainingFilter";
+import {AuthContext} from "../context";
 
 const SelftrainingPage = () => {
 
@@ -13,6 +14,7 @@ const SelftrainingPage = () => {
         date: null
     })
 
+    const {authData} = useContext(AuthContext)
     const [selftrainings, setSelftrainings] = useState([])
 
     const newSelftraining = async () => {
@@ -20,7 +22,7 @@ const SelftrainingPage = () => {
             hours: datetime.hours,
             minutes: datetime.minutes,
             date: datetime.date,
-            username: "20350125" // TODO: USERNAME HERE
+            username: authData.username
         })
 
         const response = res.data
@@ -33,7 +35,7 @@ const SelftrainingPage = () => {
     }
 
     const updateSelftrainings = async () => {
-        const res = await SelftrainingService.getUserSelftrainings("20350125")
+        const res = await SelftrainingService.getUserSelftrainings(authData.username)
         const response = res.data
 
         if (response.isError) {

@@ -1,14 +1,22 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {AuthContext} from "../context";
 
 const LoginPage = () => {
 
-    const [authData, setAuthData] = useState({
+    const [authInput, setAuthInput] = useState({
         username: "",
         password: ""
     })
 
+    const {setAuthData} = useContext(AuthContext)
+
     const login = () => {
-        console.log(authData)
+        // TODO: POST /login
+        setAuthData({
+            isAuth: true,
+            username: authInput.username,
+            roles: []
+        })
     }
 
 
@@ -26,8 +34,8 @@ const LoginPage = () => {
                                 <input type="text" name="first-name" id="first-name"
                                        className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                                        placeholder="Логин"
-                                       onChange={e => setAuthData({...authData, username: e.target.value})}
-                                       value={authData.username}
+                                       onChange={e => setAuthInput({...authInput, username: e.target.value})}
+                                       value={authInput.username}
                                 />
                                 <label
                                     className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0">
@@ -41,8 +49,8 @@ const LoginPage = () => {
                                 <input type="password" name="last-name" id="last-name"
                                        className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                                        placeholder="Пароль"
-                                       onChange={e => setAuthData({...authData, password: e.target.value})}
-                                       value={authData.password}
+                                       onChange={e => setAuthInput({...authInput, password: e.target.value})}
+                                       value={authInput.password}
                                 />
                                 <label
                                     className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0">Пароль</label>

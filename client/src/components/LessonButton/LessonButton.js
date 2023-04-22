@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Modal, ButtonToolbar} from 'rsuite';
 import {toast} from "react-toastify";
 import LessonService from "../../api/LessonService";
 import TeacherPicker from "../TeacherPicker/TeacherPicker";
+import {AuthContext} from "../../context";
 
 const LessonButton = ({pairInfo, teachers, updateLessons}) => {
 
@@ -10,6 +11,8 @@ const LessonButton = ({pairInfo, teachers, updateLessons}) => {
     const [newPairInfo, setNewPairInfo] = useState(pairInfo)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const {authData} = useContext(AuthContext)
+
 
     const groupHandle = (event) => {
         let tempPairInfo = {...newPairInfo}
@@ -51,6 +54,21 @@ const LessonButton = ({pairInfo, teachers, updateLessons}) => {
             toast.success(response.message)
             await updateLessons()
         }
+    }
+
+    if (!authData.roles.includes('admin')) {
+        return (
+            <button
+                disabled={true}
+                className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 text-center w-full h-full"
+                onClick={handleOpen}>
+                {pairInfo.teacher}
+                <br/>
+                <b>{pairInfo.group}</b>
+                <br/>
+                {pairInfo.subject}
+            </button>
+        )
     }
 
     return (

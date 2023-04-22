@@ -4,7 +4,7 @@ import EmptyLessonButton from "../EmptyLessonButton/EmptyLessonButton";
 import LessonButton from "../LessonButton/LessonButton";
 import {toast} from "react-toastify";
 
-const Schedule = ({date, teachers, classrooms}) => {
+const Schedule = ({date, teachers, classrooms, update}) => {
 
     const [lessons, setLessons] = useState([])
 
@@ -44,7 +44,7 @@ const Schedule = ({date, teachers, classrooms}) => {
 
     useEffect(() => {
         updateLessons()
-    }, [])
+    }, [update])
 
     return (
         <div className="flex flex-col w-3/4 mx-auto">

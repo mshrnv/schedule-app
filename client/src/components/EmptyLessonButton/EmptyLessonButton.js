@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {ButtonToolbar, Modal} from "rsuite";
 import {toast} from "react-toastify";
 import LessonService from "../../api/LessonService";
 import TeacherPicker from "../TeacherPicker/TeacherPicker";
+import {AuthContext} from "../../context";
 
 const EmptyLessonButton = ({lesson_number, classroom, date, teachers, updateLessons}) => {
 
@@ -17,6 +18,8 @@ const EmptyLessonButton = ({lesson_number, classroom, date, teachers, updateLess
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const {authData} = useContext(AuthContext)
+
 
     const groupHandle = (event) => {
         let tempPairInfo = {...pairInfo}
@@ -46,6 +49,16 @@ const EmptyLessonButton = ({lesson_number, classroom, date, teachers, updateLess
             toast.success(response.message)
             await updateLessons()
         }
+    }
+
+    if (!authData.roles.includes('admin')) {
+        return (
+            <button
+                disabled={true}
+                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-2 py-2 text-center w-full h-full"
+                onClick={handleOpen}>Нет пары
+            </button>
+        )
     }
 
     return (

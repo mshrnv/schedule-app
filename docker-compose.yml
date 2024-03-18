@@ -34,6 +34,7 @@ services:
     image: app-client
     container_name: app-react-client
     command: npm start
+    env_file: ./client/.env
     volumes:
       - ./client/:/usr/app
       - /usr/app/node_modules

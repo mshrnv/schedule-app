@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
-import { AuthContext } from "../context";
-import { toast, ToastContainer } from "react-toastify";
+import React, {useContext, useState} from 'react';
+import {AuthContext} from "../context";
+import {toast, ToastContainer} from "react-toastify";
 import AuthService from "../api/AuthService";
 
 const LoginPage = () => {
@@ -10,16 +10,18 @@ const LoginPage = () => {
         password: ""
     })
 
-    const { setAuthData } = useContext(AuthContext)
+    const {setAuthData} = useContext(AuthContext)
 
     const login = async () => {
         const response = await AuthService.login(authInput.username, authInput.password)
 
         if (response.success) {
+            localStorage.setItem("token", JSON.stringify(response.data.token));
             setAuthData({
                 isAuth: true,
                 username: authInput.username,
-                roles: ['admin']
+                roles: ['USER', 'ADMIN']
+                // roles: ['ADMIN']
             })
         } else {
             toast.error('Неправильный логин или пароль')
@@ -39,10 +41,10 @@ const LoginPage = () => {
                             <div
                                 className="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
                                 <input type="text" name="first-name" id="first-name"
-                                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
-                                    placeholder="Логин"
-                                    onChange={e => setAuthInput({ ...authInput, username: e.target.value })}
-                                    value={authInput.username}
+                                       className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                                       placeholder="Логин"
+                                       onChange={e => setAuthInput({...authInput, username: e.target.value})}
+                                       value={authInput.username}
                                 />
                                 <label
                                     className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0">
@@ -54,10 +56,10 @@ const LoginPage = () => {
                             <div
                                 className="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
                                 <input type="password" name="last-name" id="last-name"
-                                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
-                                    placeholder="Пароль"
-                                    onChange={e => setAuthInput({ ...authInput, password: e.target.value })}
-                                    value={authInput.password}
+                                       className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                                       placeholder="Пароль"
+                                       onChange={e => setAuthInput({...authInput, password: e.target.value})}
+                                       value={authInput.password}
                                 />
                                 <label
                                     className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0">Пароль</label>
@@ -65,15 +67,15 @@ const LoginPage = () => {
                         </div>
                         <div className="flex">
                             <button type="button"
-                                onClick={login}
-                                className="mx-auto text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 font-medium rounded-lg text-md px-5 py-2.5 text-center mt-4">
+                                    onClick={login}
+                                    className="mx-auto text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 font-medium rounded-lg text-md px-5 py-2.5 text-center mt-4">
                                 Войти
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <ToastContainer />
+            <ToastContainer/>
         </div>
     );
 };

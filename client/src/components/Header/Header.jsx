@@ -8,6 +8,7 @@ const Header = () => {
     const {authData, setAuthData} = useContext(AuthContext)
 
     const logout = () => {
+        localStorage.removeItem("token");
         setAuthData({...authData, isAuth: false})
     }
 
@@ -16,7 +17,7 @@ const Header = () => {
         {url: '/selftraining', name: 'Запись на самоподготовку', isActive: false},
     ]
 
-    if (authData.roles.includes('admin')) {
+    if (authData.roles.includes('ADMIN')) {
         links.push({url: '/dashboard', name: 'Панель управления', isActive: false})
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import {DatePicker} from "rsuite";
+import { DatePicker } from "rsuite";
 
-const SelftrainingFilter = ({datetime, setDatetime, newSelftraining}) => {
+const SelftrainingFilter = ({ datetime, setDatetime, newSelftraining }) => {
 
     const handleTime = (time) => {
         let newHours = null
@@ -59,25 +59,25 @@ const SelftrainingFilter = ({datetime, setDatetime, newSelftraining}) => {
             <DatePicker
                 size="lg"
                 placeholder="Выберите дату"
-                disabledDate={date => [0, 5, 6].includes(date.getDay())}
+                shouldDisableDate={date => [0, 5, 6].includes(date.getDay())}
                 onChange={handleDate}
                 onClean={cleanDate}
-                style={{width: 320, marginTop: 32, marginBottom: 8}}
+                style={{ width: 320, marginTop: 32, marginBottom: 8 }}
             />
             <DatePicker
                 format="HH:mm"
                 size="lg"
                 placeholder="Выберите время"
                 ranges={[]}
-                hideHours={hour => hour < 8 || hour > 20}
+                hideHours={hour => hour < 15 || hour >= 18}
                 hideMinutes={minute => minute % 10 !== 0}
                 onChange={handleTime}
                 onClean={cleanTime}
-                style={{width: 320, marginTop: 8, marginBottom: 8}}
+                style={{ width: 320, marginTop: 8, marginBottom: 8 }}
             />
             <button type="button"
-                    onClick={newSelftraining}
-                    className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 text-lg font-bold rounded-lg text-sm px-5 py-2.5 text-center mt-4 mr-2 mb-2">Записаться
+                onClick={newSelftraining}
+                className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 text-lg font-bold rounded-lg text-sm px-5 py-2.5 text-center mt-4 mr-2 mb-2">Записаться
             </button>
         </div>
     );

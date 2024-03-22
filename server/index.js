@@ -9,7 +9,7 @@ const mainRouter = require("./routers/Router")
 
 // Server port
 const EXPRESS_PORT = process.env.EXPRESS_PORT || 5000
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/27unc'
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://mongo-db:27017/27unc'
 
 // Express app
 const app = express()

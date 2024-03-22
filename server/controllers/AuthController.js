@@ -19,26 +19,23 @@ class AuthController {
         try {
             const { username, password } = req.body
 
-            let adminAuthenticated = await ldap.authenticate({
-                ldapOpts: { url: 'ldap://dc.iksi.edu' },
-                userDn: 'cn=web_portal,ou=services,ou=iksi,dc=iksi,dc=edu',
-                userPassword: 'web_portal',
-                userSearchBase: 'dc=iksi,dc=edu',
+            let authenticated = await ldap.authenticate({
+                ldapOpts: { url: 'ldap://192.168.25.3' },
+                adminDn: 'cn=web_portal,ou=services,ou=iksi,dc=iksi,dc=edu',
+                adminPassword: 'web_portal',
+                userSearchBase: 'ou=iksi,dc=iksi,dc=edu',
                 usernameAttribute: 'cn',
                 username: username,
-            })
-
-            const path = adminAuthenticated.distinguishedName;
-
-            let authenticated = await ldap.authenticate({
-                ldapOpts: { url: 'ldap://dc.iksi.edu' },
-                userDn: path,
                 userPassword: password,
+                groupsSearchBase: 'ou=iksi,dc=iksi,dc=edu',
+                // groupClass: 'groupOfUniqueNames', 
+                groupMemberAttribute: 'member',
+                // groupMemberUserAttribute: 'dn' 
             })
 
             let roles = ['USER'];
 
-            if (ADMINS.includes(username)) {
+            if (authenticated.memberOf.includes('CN=scheduler_admin,OU=admins,OU=iksi,DC=iksi,DC=edu')) {
                 roles.push('ADMIN')
             }
 

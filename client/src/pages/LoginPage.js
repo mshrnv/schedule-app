@@ -12,6 +12,13 @@ const LoginPage = () => {
 
     const { setAuthData } = useContext(AuthContext)
 
+    const handleKeypress = e => {
+        //it triggers by pressing the enter key
+        if (e.keyCode === 13) {
+            login();
+        }
+    };
+
     const login = async () => {
         const response = await AuthService.login(authInput.username, authInput.password)
         console.log(response)
@@ -29,7 +36,7 @@ const LoginPage = () => {
 
 
     return (
-        <div>
+        <div onKeyDown={handleKeypress}>
             <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
                 <div className="w-1/2">
                     <h1 className="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">Авторизация<span
@@ -43,6 +50,7 @@ const LoginPage = () => {
                                     className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                                     placeholder="Логин"
                                     onChange={e => setAuthInput({ ...authInput, username: e.target.value })}
+                                    onKeyDown={handleKeypress}
                                     value={authInput.username}
                                 />
                                 <label
@@ -58,6 +66,7 @@ const LoginPage = () => {
                                     className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                                     placeholder="Пароль"
                                     onChange={e => setAuthInput({ ...authInput, password: e.target.value })}
+                                    onKeyDown={handleKeypress}
                                     value={authInput.password}
                                 />
                                 <label
